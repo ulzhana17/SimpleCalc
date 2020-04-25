@@ -32,4 +32,65 @@ public class RomanNums {
 
         return result;
     }
+
+    public static String GetStrFromInt(int num) throws Exception
+    {
+        String s = "";
+        if(num >= 10){
+            int d = num/10;
+            switch (d) {
+                case 1: s += "X";
+                    break;
+                case 2: s += "XX";
+                    break;
+                case 3: s += "XXX";
+                    break;
+                case 4: s += "XL";
+                    break;
+                case 5: s += "L";
+                    break;
+                case 6: s += "LX";
+                    break;
+                case 7: s += "LXX";
+                    break;
+                case 8: s += "LXXX";
+                    break;
+                case 9: s += "XC";
+                    break;
+                case 10: s += "C";
+                    break;
+                default:
+                    throw  new Exception("если на входе оба числа 1-10, теоретически не должно выйти число больше 100");
+            }
+            num = num - d*10;
+        }
+
+        if(num < 10){
+            switch (num) {
+                case 0:
+                    break;
+                case 1: s += "I";
+                    break;
+                case 2: s += "II";
+                    break;
+                case 3: s += "III";
+                    break;
+                case 4: s += "IV";
+                    break;
+                case 5: s += "V";
+                    break;
+                case 6: s += "VI";
+                    break;
+                case 7: s += "VII";
+                    break;
+                case 8: s += "VIII";
+                    break;
+                case 9: s += "IX";
+                    break;
+                default:
+                    throw  new Exception("ошибка конвертации в roman");
+            }
+        }
+        return  s;
+    }
 }

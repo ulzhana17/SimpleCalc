@@ -4,10 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Reader {
-        final static String ARAB_PATTERN = "(\\b\\d\\b|10)(\\+|-|\\*|\\/)(\\b\\d\\b|10)";
-        final static String ROMAN_PATTERN = "\\b(I{1,3}|IV|VI{0,3}|IX|X)\\b(\\+|-|\\*|\\/)\\b(I{1,3}|IV|VI{0,3}|IX|X)\\b";
+        final static String ARAB_PATTERN = "(\\b\\d\\b|10)([+\\-*/])(\\b\\d\\b|10)";
+        final static String ROMAN_PATTERN = "\\b(I{1,3}|IV|VI{0,3}|IX|X)\\b([+\\-*/])\\b(I{1,3}|IV|VI{0,3}|IX|X)\\b";
 
-    public static double Check(String input) throws Exception
+    public static String Check(String input) throws Exception
     {
         boolean isArabic = input.matches(ARAB_PATTERN);
         boolean isRoman = input.matches(ROMAN_PATTERN);
@@ -19,7 +19,7 @@ public class Reader {
 
     }
 
-    private static double GetResult(String input, boolean isArabic) throws Exception
+    private static String GetResult(String input, boolean isArabic) throws Exception
     {
         String regex = isArabic ? ARAB_PATTERN : ROMAN_PATTERN;
 
@@ -50,8 +50,9 @@ public class Reader {
         }
 
         Operation op = GetOperation(operation);
+        double result = op.action(x,y);
 
-        return op.action(x,y);
+        return isArabic ? String.valueOf(result) : RomanNums.GetStrFromInt((int)result);
     }
 
     private static Operation GetOperation(String op) throws Exception

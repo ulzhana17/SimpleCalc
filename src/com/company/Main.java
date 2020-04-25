@@ -13,7 +13,7 @@ public class Main {
         input = input.replaceAll("\\s+", "");
 
         try{
-            double result = Reader.Check(input);
+            var result = Reader.Check(input);
 
             System.out.println("Output:");
             System.out.println(result);
